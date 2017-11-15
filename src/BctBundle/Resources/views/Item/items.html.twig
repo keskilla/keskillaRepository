@@ -1,0 +1,68 @@
+{% extends'::base.html.twig' %}
+
+{% block title %}{% for items in item %} {{ items.item.contenue }} {% endfor %}{% endblock %}
+
+{% block body %}
+    <div class="container-fluid">
+
+        {% include '@BctBundle/Resources/views/Home/module_nav/nav_home.html.twig' %}
+
+        <br />
+
+        <div class="col-md-10 col-md-offset-1 col-xs-offset-2 col-xs-6" >
+            <div class="col-md-5" >
+            {% for items in item %}
+                <ul class="thumbnails" style="display:inline-block">
+                    <li class="span3">
+                        <div class="thumbnails">
+                            <div class="subcategory">
+                               <h3>{{ items.item.contenue|trans }}</h3>
+                            </div>
+                            <div class="caption">
+                                <div class="titre_tcc">
+                                    <img src="{{ items.path }}" alt="photo" height="240" width="400" />
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            {% if items.item.avantage|length != 0 %}
+
+                    <div class="plus col-md-3" >
+                        <h4 class="titre_ad">{{ 'Avantage'|trans }}</h4>
+                        <p>{{ items.item.avantage }}</p>
+                    </div>
+            {% endif %}
+
+            {% if items.item.inconvenient|length != 0 %}
+                    <div class="moin col-md-3" style="">
+                     <h4 class="titre_in" >{{ 'Disadvantage'|trans }}</h4>
+                        <p>{{ items.item.inconvenient }}</p>
+
+                    </div>
+            {% endif %}
+
+        </div>
+
+
+
+    </div>
+           <div class="col-md-10 col-md-offset-1 col-xs-offset-2 col-xs-6" >
+
+
+            <h4 class="titre">{{ 'Details'|trans }}</h4>
+
+            <p>{{ items.item.detail }}</p>
+
+
+            {% endfor %}
+
+            </div>
+{%  endblock %}
+
+{% block javascripts %}
+
+    <script src="{{ asset('Resources/public/detailCategorie/AfficherCacherDetails.js')}}" type="text/javascript"></script>
+
+{% endblock %}

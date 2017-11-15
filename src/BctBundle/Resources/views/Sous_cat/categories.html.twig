@@ -1,0 +1,61 @@
+{% extends'::base.html.twig' %}
+
+{% block title %}{{ m.nomBct }}{% endblock %}
+
+{% block body %}
+
+
+    <div class="container-fluid">
+
+        {% include '@BctBundle/Resources/views/Home/module_nav/nav_home.html.twig' %}
+
+        <br />
+
+        <div class="col-md-8 col-md-offset-2 col-xs-offset-2 col-xs-6" >
+            <h3>{{ m.nomBct }}</h3>
+<hr>
+                {% if (app.request.getLocale()) == 'fr' %}
+                    <p>{{ m.defFr }}</p>
+                {% endif %}
+        <!-- afficher la definition correspondante à la langue -->
+                {% if (app.request.getLocale()) == 'en' %}
+                    <p>{{ m.defEn }}</p>
+                {% endif %}
+            {% if tcc_sousCat|length != 0 %}<!-- si les sous catégories existent, on les affichent  -->
+                <h4 class="titre">{{ 'sub category'|trans }} <button type="button" class="btn btn-default btn-sm" id="plus">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </button></h4>
+                <table class="table table-striped" style="padding:5%" id="new">
+                    <thead>
+                        <tr>
+                            <th> {{ 'name'|trans }} </th>
+                            <th>{{ 'detail'|trans }}</th>
+                        </tr>
+
+                    </thead>
+                    <tbody>
+                        {% for tcc_sousCats in tcc_sousCat %}
+                       <tr>
+                           <td><p class="sous-cat-def"> {{ tcc_sousCats.nomSc }}</p></td>
+                           <td><a href="{{ path('definition',{'id': tcc_sousCats.id}) }}"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+                       </tr>
+
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+
+
+{%  endblock %}
+
+{% block javascripts %}
+
+    <script src="{{ asset('Resources/public/detailCategorie/AfficherCacherDetails.js')}}" type="text/javascript"></script>
+
+{% endblock %}

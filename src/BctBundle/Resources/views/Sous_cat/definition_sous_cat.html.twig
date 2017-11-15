@@ -1,0 +1,51 @@
+{% extends'::base.html.twig' %}
+
+{% block title %}{{ def.nomSc }}{% endblock %}
+
+{% block body %}
+
+
+    <div class="container-fluid">
+
+        {% include '@BctBundle/Resources/views/Home/module_nav/nav_home.html.twig' %}
+
+        <br />
+
+        <div class="col-md-8 col-md-offset-2 col-xs-offset-2 col-xs-6" >
+            <h3>{{ def.nomSc }}</h3>
+            <hr><!-- afficher la definition correspondante à la langue -->
+            {% if (app.request.getLocale()) == 'fr' %}
+                <p>{{ def.descriptionFr }}</p>
+            {% endif %}
+
+            {% if (app.request.getLocale()) == 'en' %}
+                <p>Translate in progress...</p>
+            {% endif %}
+<hr>
+<!-- -->
+            {% for ills in ill %}
+                    <ul class="thumbnails" style="display:inline-block">
+                        <li class="span3">
+                            <div class="thumbnails">
+                                <div class="subcategory">
+                                    <a href="{{ path('definition_items',{'id': ills.item.id})  }}"><img src="{{ ills.path }}" alt="photo" height="120" width="200" /></a>
+                                </div>
+                                <div class="caption">
+                                    <div class="titre_tcc">
+                                        <p>{{ ills.item.contenue }}</p>
+
+
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                {% endfor %}
+        </div>
+    </div>
+
+{%  endblock %}
+
+

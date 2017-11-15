@@ -1,0 +1,38 @@
+{% extends'::base.html.twig' %}
+
+{% block body %}
+    <html>
+        <body>
+            <div class="container-fluid">
+
+                    {% include '@BctBundle/Resources/views/Home/module_nav/nav_home.html.twig' %}
+
+                <br />
+
+                <div class="col-md-10 col-md-offset-2 col-xs-offset-2 col-xs-3" >
+                    {% for tccs in tcc %}
+                        <!-- path renvoi vers la fonction ttc_sous_cat dans le controleur avec lid de la tcc principale -->
+                        <ul class="thumbnails" style="display:inline-block">
+                            <li class="span3">
+                                <div class="thumbnails">
+                                    <div class="subcategory">
+                                        <a href="{{ path('tcc_sous_cat',{'tccs':tccs.id}) }}"><img src="{{ tccs.image.path }}" alt="photo" height="120" width="200" /></a>
+                                    </div>
+                                       <div class="caption">
+                                                <div class="titre_tcc">
+                                                    <p>{{ tccs.nomBct }}</p>
+                                                </div>
+                                       </div>
+                                 </div>
+
+                            </li>
+                         </ul>
+
+                    {% endfor %}
+
+                </div>
+            </div>
+        </body>
+    </html>
+
+{%  endblock %}

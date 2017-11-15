@@ -1,0 +1,40 @@
+{% block nav %}
+    <div class="container-fluid">
+
+            <div class="navbar navbar-default">
+                <ul class="nav navbar-nav">
+                    <li class="active"> <a href="#">{{ 'project'|trans }}</a> </li>
+                    <li> <a href="#">{{ 'functionality'|trans }}</a> </li>
+                    <li> <a href="#">{{ 'content'|trans }}</a> </li>
+                    <li> <a href="{{ path('accueil') }}">Home</a> </li>
+                    <li class="disabled"> <a href="#">Références</a> </li>
+
+                    <!--condition pour passer de la langue français - anglais -->
+
+                    {% if (app.request.getLocale()) == 'en' %}
+                        <li class="dropdown">
+                                <a href="#" id="bouton_nav" class="dropdown-toggle" style=" " role="button" data-toggle="dropdown">{{ 'langage'|trans }}
+                                    <span class="caret"></span></a>
+                                <ul id="drop"class="dropdown-menu">
+                                    <li class="active"><a id="lien_menu" href="" >EN</a></li>   <!--si je suis en en, je peux basculer en fr -->
+                                    <li class=""><a id="lien_menu" href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale':'fr'})) }}" >FR</a></li>
+                                </ul>
+                        </li>
+                    {% endif %}
+
+                    {% if (app.request.getLocale()) == 'fr' %}
+                        <li class="dropdown">
+                            <a href="#" id="bouton_nav" class="dropdown-toggle" style=" " role="button" data-toggle="dropdown">{{ 'langage'|trans }}
+                                <span class="caret"></span></a>
+                            <ul id="drop"class="dropdown-menu">
+                                <li class=""><a id="lien_menu" href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale':'en'})) }}" >EN</a></li>
+                                <li class="active"><a id="lien_menu" href="" >FR</a></li>
+                            </ul>
+                        </li>
+                    {% endif %}
+
+                </ul>
+            </div>
+
+    </div>
+{% endblock %}

@@ -1,0 +1,54 @@
+/*Page home */
+ul{
+    list-style-type: none;
+}
+
+li{
+    list-style: none;
+}
+
+.subcategory{
+
+    padding:50px;
+    display: inline;
+    margin: 0 0 0 14px;
+    width: 184px;
+}
+
+.subcategory a img  {
+
+}
+
+.subcategory a img:hover  {
+    border: 4px solid;
+    border-color: deepskyblue;
+
+}
+
+.titre_tcc {
+
+text-align: justify;
+}
+/*page categories*/
+
+.titre{
+    background-color: gainsboro;
+    padding:10px;
+    color: white; text-shadow: black 0.1em 0.1em 0.2em
+}
+
+.titre_ad{color: #fff;
+    background-color: #0069d9;
+    border-color:#0069d9;
+padding:5px;}
+.titre_in{color: #fff;
+    background-color: darkred;
+    border-color:darkred;
+padding:5px;}
+
+
+
+
+
+
+
